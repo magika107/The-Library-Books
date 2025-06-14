@@ -30,34 +30,33 @@ create table loans
     id          number primary key,
     person_id references person,
     book_id references books,
-    load_date   date default sysdate,
+    loan_date   date default sysdate,
     return_date date default null
 
 );
+
 create sequence loans_seq start with 1 increment by 1;
 --
-create view loan_report as
-select l.id          as loan_id,
+
+
+create view loans_report as
+select l.id           as loan_id,
        l.person_id,
-       p.name        as person_name,
-       p.family      as person_family,
-       p.national_id as person_national_id,
-       p.birth_date  as person_birth_date
-
-
+       p.name         as person_name,
+       p.family       as person_family,
+       p.national_id  as person_national_id,
+       p.birth_date   as person_birth_date,
+       p.phone_number as person_phone_number,
+       p.address      as person_address,
+       b.title        as book_title,
+       b.author       as book_author,
+       b.isbn         as book_isbn,
+       b.category     as book_category,
+       l.loan_date,
+       l.return_date
 from loans l
          join person p
               on l.person_id = p.id
 
          join books b
               on l.book_id = b.id;
-
-
-select *
-from loans
-         join person
-              on loans.person_id = person.id;
-select *
-from loans
-         join books
-              on loans.book_id = books.id;

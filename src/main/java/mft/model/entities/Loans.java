@@ -1,4 +1,4 @@
-package model.entities;
+package mft.model.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
