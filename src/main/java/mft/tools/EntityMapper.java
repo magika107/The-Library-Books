@@ -1,6 +1,8 @@
 package mft.tools;
 
 import lombok.Data;
+import mft.model.entities.Book;
+import mft.model.entities.Loans;
 import mft.model.entities.Person;
 
 import java.sql.ResultSet;
@@ -26,4 +28,17 @@ public class EntityMapper {
                 .build();
 
     }
+
+    public static Book bookMapper(ResultSet resultSet) throws SQLException {
+        return Book
+                .builder()
+                .id(resultSet.getInt("ID"))
+                .title(resultSet.getString("TITLE"))
+                .author(resultSet.getString("AUTHOR"))
+                .isbn(resultSet.getString("ISBN"))
+                .build();
+    }
+//    public static Loans loansMapper(ResultSet resultSet) throws SQLException {
+//
+//    }
 }
